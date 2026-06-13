@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview Preparation Assistant</title>
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}"
+>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>
+            Ace Your Next Interview
+        </h1>
+
+        <p>
+            Upload your resume, paste the job description,
+            and receive AI-powered interview preparation.
+        </p>
+
+    </div>
+
+</div>
+
+<section class="upload-section">
+
+    <form
+    action="/analyze"
+    method="POST"
+    enctype="multipart/form-data"
+    class="glass-card"
+    >
+
+        <h2>
+            Job Description
+        </h2>
+
+        <textarea
+        name="job_description"
+        placeholder="Paste Job Description Here..."
+        required
+        ></textarea>
+
+        <h2>
+            Upload Resume
+        </h2>
+
+        <input
+        type="file"
+        name="resume"
+        accept=".pdf"
+        required
+        >
+
+        <button
+        type="submit"
+        class="analyze-btn"
+        >
+            Start Interview Preparation
+        </button>
+
+    </form>
+
+</section>
+
+</body>
+
+</html>

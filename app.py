@@ -22,10 +22,15 @@ def home():
 @app.route("/analyze", methods=["POST"])
 def analyze():
 
-    job_description = request.form["job_description"]
+    # Get form data
+    job_description = request.form.get("job_description", "")
 
-    file = request.files["resume"]
+    file = request.files.get("resume")
 
+    if not file:
+        return "No resume uploaded"
+
+    # Save uploaded file
     filepath = os.path.join(
         app.config["UPLOAD_FOLDER"],
         file.filename
@@ -33,77 +38,74 @@ def analyze():
 
     file.save(filepath)
 
-    resume_text = extract_text_from_pdf(
-        filepath
-    )
+    # Extract text
+    resume_text = extract_text_from_pdf(filepath)
 
-    skills = extract_skills(
-        resume_text
-    )
+    # Extract skills
+    resume_skills = extract_skills(resume_text)
 
-    jd_skills = extract_skills(
-        job_description
-    )
+    # Extract JD skills
+    jd_skills = extract_skills(job_description)
 
+    # Missing skills
     missing_skills = []
 
     for skill in jd_skills:
-
-        if skill not in skills:
+        if skill not in resume_skills:
             missing_skills.append(skill)
 
-    matched_skills_count = len(skills)
-
-    missing_skills_count = len(
-        missing_skills
-    )
-
+    # Match Score
     if len(jd_skills) > 0:
 
+        matched_skills = len(jd_skills) - len(missing_skills)
+
         match_score = round(
-            (
-                (len(jd_skills) - len(missing_skills))
-                / len(jd_skills)
-            ) * 100,
+            (matched_skills / len(jd_skills)) * 100,
             2
         )
 
     else:
 
-        match_score = 75
+        match_score = 0
 
-    readiness_score = (
-        calculate_readiness_score(
-            match_score,
-            missing_skills_count
-        )
+    # Readiness Score
+    readiness_score = calculate_readiness_score(
+        match_score,
+        len(missing_skills)
     )
 
-    interview_questions = (
-        generate_questions(
-            skills
-        )
-    )
-
-    recommendations = (
-        generate_recommendations(
-            missing_skills
-        )
-    )
-
+    # Verdict
     if readiness_score >= 80:
+
         verdict = "Interview Ready"
 
     elif readiness_score >= 60:
+
         verdict = "Almost Ready"
 
     else:
+
         verdict = "Needs Preparation"
+
+    # Interview Questions
+    interview_questions = generate_questions(
+        resume_skills
+    )
+
+    # Recommendations
+    recommendations = generate_recommendations(
+        missing_skills
+    )
+
+    # Analytics
+    matched_skills_count = len(resume_skills)
+
+    missing_skills_count = len(missing_skills)
 
     return render_template(
         "results.html",
 
-        skills=skills,
+        skills=resume_skills,
 
         missing_skills=missing_skills,
 
@@ -111,11 +113,11 @@ def analyze():
 
         readiness_score=readiness_score,
 
+        verdict=verdict,
+
         interview_questions=interview_questions,
 
         recommendations=recommendations,
-
-        verdict=verdict,
 
         resume_text=resume_text,
 

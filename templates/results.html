@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview Analysis</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0b0b0f;
+    color:white;
+    font-family:Arial,sans-serif;
+    padding:40px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    color:#f5b942;
+    margin-bottom:10px;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+
+    background:#17171c;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 0 20px rgba(245,185,66,0.08);
+}
+
+.card h2{
+
+    color:#f5b942;
+
+    margin-bottom:20px;
+}
+
+.score{
+
+    font-size:50px;
+
+    font-weight:bold;
+}
+
+.verdict{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#22c55e;
+}
+
+.skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.skill{
+
+    background:#f5b942;
+
+    color:black;
+
+    padding:10px 15px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+}
+
+.missing{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.item{
+
+    background:#22222a;
+
+    padding:12px;
+
+    border-radius:10px;
+}
+
+.resume-card{
+
+    margin-top:40px;
+
+    background:#17171c;
+
+    border-radius:20px;
+
+    padding:30px;
+}
+
+.resume-card h2{
+
+    color:#f5b942;
+
+    margin-bottom:20px;
+}
+
+details{
+
+    margin-top:20px;
+}
+
+summary{
+
+    cursor:pointer;
+
+    color:#f5b942;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+pre{
+
+    margin-top:20px;
+
+    background:#111118;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    overflow-x:auto;
+
+    white-space:pre-wrap;
+
+    line-height:1.7;
+
+    color:#e4e4e7;
+
+    font-family:
+    "Courier New",
+    monospace;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>AI Interview Preparation Assistant</h1>
+
+        <p>Candidate Analysis Dashboard</p>
+
+    </div>
+
+    <div class="dashboard">
+
+        <div class="card">
+
+            <h2>Match Score</h2>
+
+            <div class="score">
+                {{ match_score }}%
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Readiness Score</h2>
+
+            <div class="score">
+                {{ readiness_score }}%
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Verdict</h2>
+
+            <div class="verdict">
+                {{ verdict }}
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Detected Skills</h2>
+
+            <div class="skills">
+
+                {% for skill in skills %}
+
+                <div class="skill">
+                    {{ skill }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Missing Skills</h2>
+
+            <div class="skills">
+
+                {% for skill in missing_skills %}
+
+                <div class="skill missing">
+                    {{ skill }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Recommendations</h2>
+
+            <div class="list">
+
+                {% for rec in recommendations %}
+
+                <div class="item">
+                    {{ rec }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>AI Interview Round</h2>
+
+            <div class="list">
+
+                {% for question in interview_questions %}
+
+                <div class="item">
+                    🤖 {{ question }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="resume-card">
+
+        <h2>Resume Content</h2>
+
+        <details>
+
+            <summary>
+                View Full Resume
+            </summary>
+
+            <pre>{{ resume_text }}</pre>
+
+        </details>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:
+    "Inter",
+    sans-serif;
+
+    background:#0b0b0f;
+
+    color:white;
+
+    min-height:100vh;
+}
+
+/* HERO */
+
+.hero{
+
+    height:50vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(245,185,66,0.15),
+        transparent 60%
+    );
+}
+
+.overlay{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    backdrop-filter:blur(20px);
+}
+
+.hero-content{
+
+    position:relative;
+
+    text-align:center;
+
+    z-index:2;
+}
+
+.hero h1{
+
+    font-size:4rem;
+
+    color:#f5b942;
+
+    margin-bottom:20px;
+}
+
+.hero p{
+
+    color:#d4d4d8;
+
+    font-size:1.2rem;
+
+    max-width:700px;
+}
+
+/* FORM */
+
+.upload-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:-50px;
+
+    padding:30px;
+}
+
+.glass-card{
+
+    width:750px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:
+    0 0 40px rgba(245,185,66,0.15);
+}
+
+.glass-card h2{
+
+    margin-bottom:15px;
+
+    color:#f5b942;
+}
+
+textarea{
+
+    width:100%;
+
+    height:220px;
+
+    background:#111118;
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    resize:none;
+
+    margin-bottom:25px;
+
+    font-size:15px;
+}
+
+textarea:focus{
+
+    outline:
+    2px solid #f5b942;
+}
+
+input[type="file"]{
+
+    width:100%;
+
+    background:#111118;
+
+    color:white;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+    border:none;
+}
+
+.analyze-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    background:#f5b942;
+
+    color:black;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.analyze-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 30px rgba(245,185,66,0.4);
+}

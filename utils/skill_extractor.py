@@ -1,55 +1,116 @@
 def extract_skills(text):
 
-    skill_database = [
+    text = text.lower()
 
-        "python",
-        "java",
-        "c",
-        "c++",
-        "javascript",
-        "html",
-        "css",
+    skill_database = {
 
-        "sql",
-        "mysql",
-        "mongodb",
+        "python": [
+            "python"
+        ],
 
-        "machine learning",
-        "deep learning",
-        "artificial intelligence",
-        "nlp",
+        "java": [
+            "java"
+        ],
 
-        "tensorflow",
-        "keras",
-        "pytorch",
-        "scikit-learn",
+        "c++": [
+            "c++"
+        ],
 
-        "flask",
-        "django",
-        "react",
+        "javascript": [
+            "javascript"
+        ],
 
-        "git",
-        "github",
+        "html": [
+            "html"
+        ],
 
-        "aws",
-        "azure",
+        "css": [
+            "css"
+        ],
 
-        "data analysis",
-        "power bi",
+        "sql": [
+            "sql"
+        ],
 
-        "large language models",
-        "llm",
-        "agentic ai",
-        "groq"
-    ]
+        "mysql": [
+            "mysql"
+        ],
+
+        "git": [
+            "git"
+        ],
+
+        "github": [
+            "github",
+            "git"
+        ],
+
+        "aws": [
+            "aws"
+        ],
+
+        "flask": [
+            "flask"
+        ],
+
+        "django": [
+            "django"
+        ],
+
+        "react": [
+            "react"
+        ],
+
+        "machine learning": [
+            "machine learning",
+            "ml"
+        ],
+
+        "deep learning": [
+            "deep learning"
+        ],
+
+        "nlp": [
+            "nlp"
+        ],
+
+        "tensorflow": [
+            "tensorflow"
+        ],
+
+        "data analysis": [
+            "data analysis",
+            "analytics",
+            "power bi"
+        ],
+
+        "large language models": [
+            "large language models",
+            "llm",
+            "llm workflows"
+        ],
+
+        "agentic ai": [
+            "agentic ai",
+            "agent systems",
+            "agent-based"
+        ],
+
+        "groq": [
+            "groq"
+        ]
+    }
 
     found_skills = []
 
-    text = text.lower()
+    for skill, keywords in skill_database.items():
 
-    for skill in skill_database:
+        for keyword in keywords:
 
-        if skill in text:
-            found_skills.append(skill)
+            if keyword in text:
+
+                found_skills.append(skill)
+
+                break
 
     return found_skills
